@@ -26,4 +26,14 @@ InvoicesSite::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+  
+  # Gmail settings
+  ActionMailer::Base.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :authentication => :plain,
+    :domain => ENV['DEV_GMAIL_SMTP_USER'],
+    :user_name => ENV['DEV_GMAIL_SMTP_USER'],
+    :password => ENV['DEV_GMAIL_SMTP_PASSWORD']
+  }
 end
