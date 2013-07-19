@@ -17,10 +17,10 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: ENV['DEV_DATABASE']
+  database: <%= ENV['DEV_DATABASE'] %>
   pool: 5
-  username: ENV['DEV_USER']
-  password: ENV['DEV_PASSWORD']
+  username: <%= ENV['DEV_USER'] %>
+  password: <%= ENV['DEV_PASSWORD'] %>
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -46,17 +46,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: invoices-site_test
+  database: <%= ENV['TEST_DATABASE'] =>
   pool: 5
-  username: invoices-site
-  password:
+  username: <%= ENV['TEST_USER'] =>
+  password: <%= ENV['TEST_PASSWORD'] =>
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: ENV['PRODUCTION_DATABASE']
+  database: <%= ENV['PRODUCTION_DATABASE'] =>
   pool: 5
-  username: ENV['PRODUCTION_USER']
-  password: ENV['PRODUCTION_PASSWORD']
-  host: ENV['PRODUCTION_HOST']
+  username: <%= ENV['PRODUCTION_USER'] =>
+  password: <%= ENV['PRODUCTION_PASSWORD'] =>
+  host: <%= ENV['PRODUCTION_HOST'] =>
   port: 5432
