@@ -50,6 +50,20 @@ PRODUCTION_GMAIL_SMPT_PASSWORD: ''
 MAILER_DEFAULT_URL: '' # Default URL for the mailer to use in production
 ```
 
+### Using Pry as Your Console
+
+It's pretty simple.  Just add a new initializer called `pry.rb` and paste in the following code:
+
+```
+silence_warnings do
+  begin
+    require 'pry'
+    IRB = Pry
+  rescue LoadError
+  end
+end
+```
+
 ## Database Creation
 
 Simply run `rake db:create:all` after you have done the configuration step above.

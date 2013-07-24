@@ -16,3 +16,5 @@ rerun.txt
 pickle-email-*.html
 # Ignore application configuration
 /config/application.yml
+# Ignore pry.rb
+/config/initializers/pry.rb
