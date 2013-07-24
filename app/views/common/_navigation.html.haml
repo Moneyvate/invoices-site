@@ -1,0 +1,14 @@
+/ Navigation bar
+%nav.top-bar
+  / Title area
+  %ul.title-area
+    %li.name
+      %h1
+        %a{href: '#'} #{InvoicesConfig::AppDetails::NAME}
+  / Section
+  %section.top-bar-section
+    %ul.left
+      %li.divider
+      %li
+        = link_to "Home", '/'
+    %ul.right

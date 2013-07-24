@@ -11,7 +11,7 @@ Moneyvate Invoices
 
 ### Environment Variables
 
-Create **/config/application.yml** and drop the following into it:
+Create `/config/application.yml` and drop the following into it:
 
 ```
 # Add application configuration variables here, as shown below.
@@ -52,7 +52,7 @@ MAILER_DEFAULT_URL: '' # Default URL for the mailer to use in production
 
 ## Database Creation
 
-Coming soon
+Simply run `rake db:create:all` after you have done the configuration step above.
 
 ## Database Initialization
 
