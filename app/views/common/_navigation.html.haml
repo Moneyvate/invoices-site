@@ -12,3 +12,8 @@
       %li
         = link_to "Home", '/'
     %ul.right
+      %li.divider
+      %li
+        = link_to "Edit Account", edit_user_registration_path if user_signed_in?
+      %li
+        = auth_button

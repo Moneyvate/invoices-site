@@ -1,0 +1,17 @@
+:css
+  #user_password, #user_current_password {
+    margin-bottom: 0;
+  }
+  
+  .hint {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.7rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .field_with_hint {
+    margin-bottom: 1rem;
+  }
+= provide :title, "Edit #{resource_name.to_s.humanize}"
+= render partial: 'common/devise_edit_form'

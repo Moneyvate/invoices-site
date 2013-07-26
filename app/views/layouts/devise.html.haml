@@ -22,7 +22,11 @@
     %div#content
       %p.notice #{notice}
       %p.alert #{alert}
-      = yield
+      %div.row
+        %div.small-12.columns
+          %h2 #{content_for?(:title) ? yield(:title) : "Untitled"}
+        %div.small-12.columns
+          = yield
+          = render "devise/shared/links"
     %footer
       = render 'common/footer'
-    = javascript_include_tag "application"
