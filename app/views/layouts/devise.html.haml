@@ -27,6 +27,6 @@
           %h2 #{content_for?(:title) ? yield(:title) : "Untitled"}
         %div.small-12.columns
           = yield
-          = render "devise/shared/links"
+          = render "devise/shared/links" unless user_signed_in?
     %footer
       = render 'common/footer'
