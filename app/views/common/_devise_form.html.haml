@@ -1,0 +1,57 @@
+:ruby
+  @legend_title = content_for?(:title) ? yield(:title) : "Untitled"
+  @submit_title = content_for?(:submitmsg) ? yield(:submitmsg) : yield(:title)
+
+-# Sign in
+- if current_page? '/users/sign_in'
+  = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+    = devise_error_messages!
+    %fieldset
+      %legend= @legend_title
+      = f.error_notification
+      %div.form-inputs
+        = f.input :email, required: false, autofocus: true
+        = f.input :password, required: false
+        = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+      %hr
+      %div.form-actions
+        = f.button :submit, @submit_title
+
+-# Sign up
+- if current_page? '/users/sign_up'
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    %fieldset
+      %legend= @legend_title
+      = f.error_notification
+      %div.form-inputs
+        = f.input :username, required: true, autofocus: true
+        = f.input :email, required: true
+        = f.input :password, required: true
+        = f.input :password_confirmation, required: true
+      %hr
+      %div.form-actions
+        = f.button :submit, @submit_title
+
+-# Forgot password
+- if current_page? '/users/password/new'
+  = simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+    %fieldset
+      %legend= @legend_title
+      = f.error_notification
+      %div.form_inputs
+        = f.input :email, required: true, autofocus: true
+      %hr
+      %div.form-actions
+        = f.button :submit, @submit_title
+
+-# Resend Confirmation Instructions
+- if current_page? '/users/confirmation/new'
+  = simple_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+    %fieldset
+      %legend= content_for?(:title) ? yield(:title) : "Untitled"
+      = f.error_notification
+      = f.full_error :confirmation_token
+      %div.form_inputs
+        = f.input :email, required: true, autofocus: true
+      %div.form_actions
+        = f.button :submit, @submit_title

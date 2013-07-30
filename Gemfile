@@ -51,7 +51,6 @@ gem 'haml-rails'
 gem 'pg'
 gem 'simple_form', '~> 3.0.0.rc'
 gem 'unicorn'
-
 gem 'compass-rails'
 gem 'zurb-foundation'
 
@@ -70,6 +69,7 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'pry'
 end
 
 group :test do

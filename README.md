@@ -1,6 +1,8 @@
 Moneyvate Invoices
 =============
 
+[![Code Climate](https://codeclimate.com/github/Moneyvate/invoices-site.png)](https://codeclimate.com/github/Moneyvate/invoices-site)
+
 ## Requirements
 
 * Ruby 2.0
@@ -11,7 +13,7 @@ Moneyvate Invoices
 
 ### Environment Variables
 
-Create **/config/application.yml** and drop the following into it:
+Create `/config/application.yml` and drop the following into it:
 
 ```
 # Add application configuration variables here, as shown below.
@@ -24,6 +26,7 @@ Create **/config/application.yml** and drop the following into it:
 
 # Mail settings
 MAIL_DOMAIN: ''
+DEV_MAIL_DOMAIN: 'localhost:3000'
 DEFAULT_MAIL_FROM: '' # Address that will appear in the From header
 
 # Development database credentials
@@ -50,13 +53,27 @@ PRODUCTION_GMAIL_SMPT_PASSWORD: ''
 MAILER_DEFAULT_URL: '' # Default URL for the mailer to use in production
 ```
 
+### Using Pry as Your Console
+
+It's pretty simple.  Just add a new initializer called `pry.rb` and paste in the following code:
+
+```
+silence_warnings do
+  begin
+    require 'pry'
+    IRB = Pry
+  rescue LoadError
+  end
+end
+```
+
 ## Database Creation
 
-Coming soon
+Simply run `rake db:create:all` after you have done the configuration step above.
 
 ## Database Initialization
 
-Coming soon
+After creating the database, simply run `rake db:schema:load` and the database will be initialized.
 
 ## Running the Test Suite
 
