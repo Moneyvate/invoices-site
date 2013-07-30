@@ -1,6 +1,8 @@
 Moneyvate Invoices
 =============
 
+[![Code Climate](https://codeclimate.com/github/Moneyvate/invoices-site.png)](https://codeclimate.com/github/Moneyvate/invoices-site)
+
 ## Requirements
 
 * Ruby 2.0
@@ -24,6 +26,7 @@ Create `/config/application.yml` and drop the following into it:
 
 # Mail settings
 MAIL_DOMAIN: ''
+DEV_MAIL_DOMAIN: 'localhost:3000'
 DEFAULT_MAIL_FROM: '' # Address that will appear in the From header
 
 # Development database credentials
@@ -70,7 +73,7 @@ Simply run `rake db:create:all` after you have done the configuration step above
 
 ## Database Initialization
 
-Coming soon
+After creating the database, simply run `rake db:schema:load` and the database will be initialized.
 
 ## Running the Test Suite
 
