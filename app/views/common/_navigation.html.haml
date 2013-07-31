@@ -11,5 +11,7 @@
       %li.divider
       %li
         = link_to "Home", '/'
+      %li
+        = link_to "Clients", '/clients' if user_signed_in?
     %ul.right
       = render 'common/auth_button'

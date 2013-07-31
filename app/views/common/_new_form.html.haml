@@ -1,0 +1,14 @@
+:ruby
+	@legend_title = content_for?(:title) ? yield(:title) : "Untitled"
+	@submit_title = content_for?(:submitmsg) ? yield(:submitmsg) : yield(:title)
+
+-# New Client
+- if current_page? '/clients/new'
+	= simple_form_for(@client) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+			%div.form-actions
+				= f.button :submit
+	= link_to 'Back', clients_path
