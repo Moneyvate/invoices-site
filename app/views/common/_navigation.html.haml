@@ -16,5 +16,6 @@
         = link_to "Clients", '/clients' if user_signed_in?
         %ul.dropdown
           %li= link_to "Manage Client Types", client_types_path
+          %li= link_to "Manage Contact Types", contact_types_path
     %ul.right
       = render 'common/auth_button'

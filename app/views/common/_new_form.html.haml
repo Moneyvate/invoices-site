@@ -22,3 +22,12 @@
 				= f.input :name
 			%div.form-actions
 				= f.button :submit
+-# New Contact Type
+- if current_page? '/contact_types/new'
+	= simple_form_for(@contact_type) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+			%div.form-actions
+				= f.button :submit
