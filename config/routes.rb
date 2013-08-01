@@ -1,4 +1,6 @@
 InvoicesSite::Application.routes.draw do
+  resources :client_types
+
   resources :clients
 
   devise_for :users

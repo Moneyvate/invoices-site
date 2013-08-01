@@ -9,6 +9,16 @@
 			%legend= @legend_title
 			%div.form-inputs
 				= f.input :name
+				= f.input :client_type_id, as: :select, collection: ClientType.all
 			%div.form-actions
 				= f.button :submit
 	= link_to 'Back', clients_path
+-# New Client Type
+- if current_page? '/client_types/new'
+	= simple_form_for(@client_type) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+			%div.form-actions
+				= f.button :submit
