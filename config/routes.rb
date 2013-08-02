@@ -1,12 +1,4 @@
 InvoicesSite::Application.routes.draw do
-  resources :contacts
-
-  resources :contact_types
-
-  resources :client_types
-
-  resources :clients
-
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -16,6 +8,13 @@ InvoicesSite::Application.routes.draw do
   
   authenticated :user do
     root 'users#show', as: :authenticated_root
+    resources :contacts
+
+    resources :contact_types
+
+    resources :client_types
+
+    resources :clients
   end
 
   # Example of regular route:
