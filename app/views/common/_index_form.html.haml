@@ -42,3 +42,30 @@
 				%td= link_to 'Show', contact_type
 				%td= link_to 'Edit', edit_contact_type_path(contact_type)
 				%td= link_to 'Destroy', contact_type, :method => :delete, :data => { confirm: 'Are you sure?' }
+
+- # Contact
+- if current_page? '/contacts'
+	%table
+		%tr
+			%th Name
+			%th Title
+			%th Email
+			%th Phone
+			%th Skype
+			%th IM
+			%th Client
+			%th Type
+			%th{colspan: 3} Actions
+		- @contacts.each do |contact|
+			%tr
+				%td= contact.name
+				%td= contact.title
+				%td= contact.email
+				%td= contact.phone
+				%td= contact.skype
+				%td= contact.im
+				%td= contact.client.name
+				%td= contact.contact_type.name
+				%td= link_to 'Show', contact
+				%td= link_to 'Edit', edit_contact_path(contact)
+				%td= link_to 'Destroy', contact, method: :delete, data: {confirm: 'Are you sure?'}

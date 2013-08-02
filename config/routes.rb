@@ -1,4 +1,6 @@
 InvoicesSite::Application.routes.draw do
+  resources :contacts
+
   resources :contact_types
 
   resources :client_types
