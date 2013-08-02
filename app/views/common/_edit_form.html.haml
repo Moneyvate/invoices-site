@@ -1,0 +1,51 @@
+:css
+	.label {
+		background: none;
+		color: #222;
+	}
+:ruby
+	@legend_title = content_for?(:title) ? yield(:title) : "Untitled"
+	@submit_title = content_for?(:submitmsg) ? yield(:submitmsg) : yield(:title)
+
+-# Edit Client
+- if current_page? controller: 'clients', action: 'edit'
+	
+	= simple_nested_form_for(@client) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+				= f.input :client_type_id, as: :select, collection: ClientType.all
+				= f.simple_fields_for :contacts do |contact|
+					%fieldset
+						%legend Contacts
+						= contact.input :name
+						= contact.association :contact_type
+						= contact.input :title
+						= contact.input :email
+						= contact.input :phone
+						= contact.input :skype
+						= contact.input :im
+						= contact.link_to_remove 'Remove this contact'
+			%div.form-actions
+				= f.button :submit
+				= f.link_to_add 'Add Contact', :contacts
+-# Edit Client Type
+- if current_page? controller: 'client_types', action: 'edit'
+	= simple_form_for(@client_type) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+			%div.form-actions
+				= f.button :submit
+
+-# Edit Contact Type
+- if current_page? controller: 'contact_types', action: 'edit'
+	= simple_form_for(@contact_type) do |f|
+		%fieldset
+			%legend= @legend_title
+			%div.form-inputs
+				= f.input :name
+			%div.form-actions
+				= f.button :submit

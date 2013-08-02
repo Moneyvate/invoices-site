@@ -11,7 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130725002225) do
+ActiveRecord::Schema.define(version: 20130801213511) do
+
+  create_table "client_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "client_type_id"
+  end
+
+  add_index "clients", ["client_type_id"], name: "index_clients_on_client_type_id", using: :btree
+
+  create_table "contact_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.integer  "contact_type_id"
+    t.integer  "client_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "email"
+    t.integer  "phone",           limit: 8
+    t.string   "skype"
+    t.string   "im"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contacts", ["client_id"], name: "index_contacts_on_client_id", using: :btree
+  add_index "contacts", ["contact_type_id"], name: "index_contacts_on_contact_type_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username",               default: "", null: false
