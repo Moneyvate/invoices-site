@@ -1,25 +1,25 @@
 / Navigation bar
 %nav.top-bar
-  / Title area
   %ul.title-area
     %li.name
-      %h1
-        %a{href: '#'} #{InvoicesConfig::AppDetails::NAME}
-  / Section
+      %h1= link_to "#{InvoicesConfig::AppDetails::NAME}", '/'
+    / Remove the class "menu-icon" to get rid of the menu icon.  Take out "Menu" to just have the icon alone.
+    %li.toggle-topbar.menu-icon
+      = link_to 'Menu', ''
   %section.top-bar-section
     %ul.left
       %li.divider
-      %li
-        = link_to "Home", '/'
+      %li= link_to "Home", '/'
       -# Clients
-      %li.has-dropdown
-        = link_to "Clients", '/clients' if user_signed_in?
+      %li.has-dropdown.not-click
+        = link_to 'Clients', '/clients' if user_signed_in?
         %ul.dropdown
-          %li= link_to "Manage Client Types", client_types_path
+          %li= link_to 'Manage Client Types', client_types_path
       -# Contacts
       %li.has-dropdown
-        = link_to "Contacts", '/contacts' if user_signed_in?
+        = link_to 'Contacts', '/contacts' if user_signed_in?
         %ul.dropdown
           %li= link_to "Manage Contact Types", contact_types_path
+    / Right nav section
     %ul.right
       = render 'common/auth_button'
