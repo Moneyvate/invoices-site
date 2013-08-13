@@ -20,8 +20,9 @@
     %header
       = render 'common/navigation'
     %div#content
-      %p.notice #{notice}
-      %p.alert #{alert}
+      %div.row
+        %p.notice.small-12.columns #{notice}
+        %p.alert.small-12.columns #{alert}
       %div.row
         %div.small-12.columns
           %h2 #{content_for?(:title) ? yield(:title) : "Untitled"}

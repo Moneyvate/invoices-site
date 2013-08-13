@@ -8,6 +8,7 @@ InvoicesSite::Application.routes.draw do
   
   authenticated :user do
     root 'users#show', as: :authenticated_root
+
     resources :contacts
 
     resources :contact_types
