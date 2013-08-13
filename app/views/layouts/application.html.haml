@@ -20,9 +20,11 @@
     %header
       = render 'common/navigation'
     %div#content
-      %p.notice #{notice}
-      %p.alert #{alert}
-      = yield
+      %div.row
+        %p.notice #{notice}
+        %p.alert #{alert}
+      %div.row
+        = yield
     %footer
       = render 'common/footer'
     = javascript_include_tag "application"

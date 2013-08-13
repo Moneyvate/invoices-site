@@ -1,0 +1,19 @@
+:css
+	h2 {
+		margin-bottom: 0;
+		border-bottom: 1px solid black;
+	}
+= provide :title, @client.name
+%fieldset
+	%legend Contacts
+	- @client.contacts.each do |contact|
+		%fieldset
+			%legend #{contact.name}, #{contact.title}
+			%p Phone: #{contact.parse_phone}
+			%p Email: #{contact.email}
+			%p= "Skype: #{contact.skype}" unless contact.skype.empty?
+			%p= "IM: #{contact.im}" unless contact.im.empty?
+			= link_to 'Edit this contact', edit_contact_path(contact)
+= link_to 'Edit', edit_client_path(@client)
+\|
+= link_to 'Back', clients_path

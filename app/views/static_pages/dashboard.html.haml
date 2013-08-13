@@ -1,0 +1,43 @@
+= provide :title, "Hello, #{current_user.username}!"
+%div.row
+	%div.large-5.columns
+		%fieldset
+			%legend Clients
+			%table
+				%tr
+					%th Name
+					%th Type
+					%th{colspan: 3} Actions
+				- Client.order('name ASC').each do |client|
+					%tr
+						%td= client.name
+						%td= client.client_type.name
+						%td= link_to 'Show', client
+						%td= link_to 'Edit', edit_client_path(client)
+						%td= link_to 'Destroy', client, :method => :delete, :data => { confirm: 'Are you sure?'}
+			= link_to 'New Client', new_client_path
+	%div.large-7.columns
+		%fieldset
+			%legend Contacts
+			%table
+				%tr
+					%th Name
+					%th.hide-for-small Title
+					%th Email
+					%th Phone
+					%th Client
+					%th Type
+					%th{colspan: 3} Actions
+				- Contact.all.each do |contact|
+					%tr
+						%td= contact.name
+						%td.hide-for-small= contact.title
+						%td= contact.email
+						%td= contact.parse_phone
+						%td= contact.client.name
+						%td.hide-for-small= contact.contact_type.name
+						%td= link_to 'Show', contact
+						%td= link_to 'Edit', edit_contact_path(contact)
+						%td= link_to 'Destroy', contact, method: :delete, data: {confirm: 'Are you sure?'}
+			= link_to 'New Contact', new_contact_path
+%div.row
