@@ -1,12 +1,3 @@
-GIT
-  remote: git://github.com/scambra/devise_invitable.git
-  revision: 1c6a50bb29f8637b3bffb05c2ba32e927d105113
-  branch: rails4
-  specs:
-    devise_invitable (1.2.0.rc1)
-      actionmailer (>= 4.0.0.rc1)
-      railties (>= 4.0.0.rc1)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -251,7 +242,6 @@ DEPENDENCIES
   compass-rails
   database_cleaner
   devise
-  devise_invitable!
   email_spec
   figaro
   guard-bundler

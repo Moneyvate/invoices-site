@@ -18,3 +18,5 @@ pickle-email-*.html
 /config/application.yml
 # Ignore pry.rb
 /config/initializers/pry.rb
+.vagrant
+

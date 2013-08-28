@@ -81,4 +81,37 @@ Coming soon
 
 ## Deploying
 
-Coming soon
+### On Localhost With Vagrant
+
+```
+vagrant@precise64:/vagrant$ vagrant up
+vagrant@precise64:/vagrant$ cd /vagrant
+vagrant@precise64:/vagrant$ ./bin/vagrant-configure-dev
+```
+
+Enter your first name, last name and the email address you used when you signed up for Github (needed to properly configure Git on your Vagrant instance) when prompted.
+
+Answer the next set of questions as follows:
+
+```
+Shall the new role be a superuser? (y/n) n
+Shall the new role be allowed to create databases? (y/n) y
+Shall the new role be allowed to create more new roles? (y/n) n
+```
+
+Run Bundler, then configure the Postgresql to work properly with Rails by running:
+
+```
+vagrant@precise64:/vagrant$ sudo su postgres
+postgres@precise64:/vagrant$ psql template1
+psql (9.1.9)
+Type "help" for help.
+
+template1=# \i lib/assets/setup.sql
+template1=# \q
+postgres@precise64:/vagrant$ exit
+```
+
+Now that postgresql is fixed to work with Rails, you may now run `rake db:create:all`, followed by `rake db:schema:load`.  Once that's done, go ahead and run `rake db:seed` to seed the database with your first admin user.
+
+Congratulations!  You now have a perfectly running Vagrant instance for Moneyvate Invoices!  You'll only have to *bin/vagrant-configure-dev* once.  To view the site, simply go to **http://localhost:8080** on your host machine.
