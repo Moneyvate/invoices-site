@@ -46,17 +46,17 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['TEST_DATABASE'] =>
+  database: <%= ENV['TEST_DATABASE'] %>
   pool: 5
-  username: <%= ENV['TEST_USER'] =>
-  password: <%= ENV['TEST_PASSWORD'] =>
+  username: <%= ENV['TEST_USER'] %>
+  password: <%= ENV['TEST_PASSWORD'] %>
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['PRODUCTION_DATABASE'] =>
+  database: <%= ENV['PRODUCTION_DATABASE'] %>
   pool: 5
-  username: <%= ENV['PRODUCTION_USER'] =>
-  password: <%= ENV['PRODUCTION_PASSWORD'] =>
-  host: <%= ENV['PRODUCTION_HOST'] =>
+  username: <%= ENV['PRODUCTION_USER'] %>
+  password: <%= ENV['PRODUCTION_PASSWORD'] %>
+  host: <%= ENV['PRODUCTION_HOST'] %>
   port: 5432
