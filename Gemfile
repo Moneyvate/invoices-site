@@ -45,7 +45,6 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-gem 'devise_invitable', github: 'scambra/devise_invitable', branch: 'rails4'
 gem 'figaro'
 gem 'haml-rails'
 gem 'pg'

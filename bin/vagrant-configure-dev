@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+
+# File: configure
+
+bash_completion_url=https://raw.github.com/bobthecow/git-flow-completion/master/git-flow-completion.bash
+bash_completion_path=/etc/bash_completion.d
+main_repo_url=https://github.com/Moneyvate/invoices-site.git
+pg_hba_url=https://gist.github.com/ARMIGER1/f7938f3b270a7166e564/raw/6f4e3174c9d7f16df804f44e7e77c308cf1de83c/pg_hba.conf
+
+function msg {
+    printf "%s " "$*"
+    printf "\n"
+}
+
+function pause {
+    read -p "$*"
+}
+
+function add_progress_bar {
+    if `cat ~/.curlrc | grep progress-bar`; then
+        msg You already have a loading bar.  Moving on...
+    else
+        msg Adding a progress bar...
+        echo progress-bar >> ~/.curlrc
+    fi
+}
+
+sudo apt-get install -y curl
+
+add_progress_bar
+
+sudo apt-get install -y nodejs
+
+sudo apt-get install -y git git-flow git-core bash-completion
+
+if [ -e $bash_completion_path ]; then
+	msg git-flow-completion has already been installed.  Moving on...
+else
+	pushd $bash_completion_path
+	sudo wget $bash_completion_url
+	popd
+fi
+
+clear
+
+msg If you have not forked the repo on Github, please do so now.
+msg It can be found at https://github.com/Moneyvate/invoices-site.git
+pause Please press [ENTER] to continue when you have forked the repo.
+
+msg What is your first name?
+read first_name
+
+msg What is your last name?
+read last_name
+
+msg What is the email address you use for Github?
+read github_email
+
+`git config --global --replace-all user.name "$first_name $last_name"`
+`git config --global user.email $github_email`
+git config --global credential.helper cache
+
+clear
+
+git remote add upstream $main_repo_url
+
+clear
+
+sudo apt-get install -y ruby-dev build-essential postgresql postgresql-client libpq5 libpq-dev pidentd
+
+sudo cp /etc/postgresql/9.1/main/pg_hba.conf /etc/postgresql/9.1/main/pg_hba.conf.backup
+
+pushd /etc/postgresql/9.1/main/
+sudo wget -O pg_hba.conf $pg_hba_url
+popd
+
+sudo service postgresql restart
+
+clear
+
+sudo -u postgres createuser invoices-site
