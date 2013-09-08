@@ -1,2 +1,12 @@
 = provide :title, 'Client Types'
-= render 'common/index_form'
+
+%table
+	%thead
+		%tr
+			%th Name
+			%th{colspan: 3} Actions
+	- @client_types.each do |client_type|
+		- @current_class = client_type
+		%tr
+			%td= client_type.name
+			= render 'common/index_links'

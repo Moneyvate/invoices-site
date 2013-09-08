@@ -5,7 +5,7 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.order("name ASC")
+    @clients = Client.order("name ASC").includes(:client_type)
   end
 
   # GET /clients/1

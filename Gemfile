@@ -53,6 +53,7 @@ gem 'nested_form'
 gem 'unicorn'
 gem 'compass-rails'
 gem 'zurb-foundation'
+gem 'time_diff'
 
 group :development do
   gem 'better_errors'
@@ -76,5 +77,5 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'email_spec'
-  gem 'machinist'
+  gem 'factory_girl_rails'
 end

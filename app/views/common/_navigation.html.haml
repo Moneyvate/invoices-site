@@ -20,6 +20,8 @@
         = link_to 'Contacts', '/contacts' if user_signed_in?
         %ul.dropdown
           %li= link_to "Manage Contact Types", contact_types_path
+      -# Tasks
+      %li= link_to 'Tasks', '/tasks' if user_signed_in?
     / Right nav section
     %ul.right
       = render 'common/auth_button'

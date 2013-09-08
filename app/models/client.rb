@@ -4,4 +4,8 @@ class Client < ActiveRecord::Base
   accepts_nested_attributes_for :contacts, allow_destroy: true
   validates :name, presence: true
   validates :client_type_id, presence: true
+
+  def to_s
+    name
+  end
 end

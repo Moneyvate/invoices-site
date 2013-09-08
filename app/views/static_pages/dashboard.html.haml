@@ -1,43 +1,64 @@
 = provide :title, "Hello, #{current_user.username}!"
 %div.row
-	%div.large-5.columns
-		%fieldset
-			%legend Clients
-			%table
+	.large-5.columns
+		%table
+			%thead
+				%tr
+					%th{colspan: 5} Clients
 				%tr
 					%th Name
 					%th Type
 					%th{colspan: 3} Actions
-				- Client.order('name ASC').each do |client|
+			- Client.order('name ASC').includes(:client_type).each do |client|
+				- @current_class = client
+				%tr
+					%td= client.name
+					%td= client.client_type.name
+					= render 'common/index_links'
+			%tfoot
+				%tr
+					%td{colspan: 5}= link_to 'New Client', new_client_path
+	.large-7.columns
+		%table
+			%thead
+				%tr
+					%th{colspan: 6} Tasks
+				%tr
+					%th Name
+					%th Client
+					%th Due Date
+					%th{colspan: 3} Actions
+			- unless Task.all.nil?
+				- Task.order('due_date ASC').includes(:client).each do |task|
+					- @current_class = task
 					%tr
-						%td= client.name
-						%td= client.client_type.name
-						%td= link_to 'Show', client
-						%td= link_to 'Edit', edit_client_path(client)
-						%td= link_to 'Destroy', client, :method => :delete, :data => { confirm: 'Are you sure?'}
-			= link_to 'New Client', new_client_path
-	%div.large-7.columns
-		%fieldset
-			%legend Contacts
-			%table
+						%td= task.name
+						%td= task.client
+						%td= task_due task.due_date
+						= render 'common/index_links'
+			%tfoot
+				%tr
+					%td{colspan: 6}= link_to 'New Task', new_task_path
+%div.row
+	.large-12.columns
+		%table
+			%thead
+				%tr
+					%th{colspan: 7} Contacts
 				%tr
 					%th Name
 					%th.hide-for-small Title
 					%th Email
-					%th Phone
 					%th Client
-					%th Type
 					%th{colspan: 3} Actions
-				- Contact.all.each do |contact|
-					%tr
-						%td= contact.name
-						%td.hide-for-small= contact.title
-						%td= contact.email
-						%td= contact.parse_phone
-						%td= contact.client.name
-						%td.hide-for-small= contact.contact_type.name
-						%td= link_to 'Show', contact
-						%td= link_to 'Edit', edit_contact_path(contact)
-						%td= link_to 'Destroy', contact, method: :delete, data: {confirm: 'Are you sure?'}
-			= link_to 'New Contact', new_contact_path
-%div.row
+			- Contact.all.includes(:client).each do |contact|
+				- @current_class = contact
+				%tr
+					%td= contact.name
+					%td.hide-for-small= contact.title
+					%td= contact.email
+					%td= contact.client
+					= render 'common/index_links'
+			%tfoot
+				%tr
+					%td{colspan: 7}= link_to 'New Contact', new_contact_path
