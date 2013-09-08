@@ -1,0 +1,31 @@
+- provide :title, @task.name
+
+%table
+  %tr
+    %th User
+    %td= @task.user
+  %tr
+    %th Client
+    %td= @task.client
+  %tr
+    %th Name
+    %td= @task.name
+  %tr
+    %th Description
+    %td= format @task.description
+  %tr
+    %th Notes
+    %td= format @task.notes
+  %tr
+    %th Priority
+    %td= @task.priority
+  %tr
+    %th Due Date
+    %td= task_due @task.due_date
+  %tr
+    %th Rate
+    %td= number_to_currency @task.rate
+
+= link_to 'Edit', edit_task_path(@task)
+\|
+= link_to 'Back', tasks_path

@@ -1,5 +1,15 @@
 = provide :title, 'Contact Types'
-= render 'common/index_form'
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th{colspan: 3} Actions
+  - @contact_types.each do |contact_type|
+    - @current_class = contact_type
+    %tr
+      %td= contact_type.name
+      = render 'common/index_links'
 
 %br
 

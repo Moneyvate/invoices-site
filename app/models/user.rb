@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: true
   validates :email, uniqueness: true
 
+  def to_s
+    username
+  end
+
   # Allows an associated mobile app to confirm a valid user immediately
   def skip_confirmation!
     self.confirmed_at = Time.now
