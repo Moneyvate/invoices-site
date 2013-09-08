@@ -1,15 +1,14 @@
 = simple_form_for(@task) do |f|
   = f.error_notification
   %fieldset
-  	%legend= content_for?(:title) ? yield(:title) : "Untitled"
-  	.form_inputs
-  		= f.association :user
-  		= f.association :client
-  		= f.input :name
-  		= f.input :description
-  		= f.input :notes
-  		= f.input :priority
-  		= f.input :due_date
-  		= f.input :rate
-  	.form-actions
-  		= f.button :submit
+    %legend= content_for?(:title) ? yield(:title) : "Untitled"
+    .form_inputs
+      = f.association :user
+      = f.association :client
+      = f.input :name
+      = f.input :description
+      = f.input :notes
+      = f.input :due_date, as: :string, input_html: { type: 'date' }
+      = f.input :rate
+    .form-actions
+      = f.button :submit

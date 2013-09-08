@@ -1,4 +1,4 @@
-%h1 Listing tasks
+- provide :title, "Listing Tasks"
 
 %table
   %tr
@@ -10,11 +10,10 @@
     %th Priority
     %th Due date
     %th Rate
-    %th
-    %th
-    %th
+    %th{colspan: 3} Actions
 
   - @tasks.each do |task|
+    - @current_class = task
     %tr
       %td= task.user
       %td= task.client
@@ -24,9 +23,7 @@
       %td= task.priority
       %td= task.due_date
       %td= task.rate
-      %td= link_to 'Show', task
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Destroy', task, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      = render 'common/index_links'
 
 %br
 

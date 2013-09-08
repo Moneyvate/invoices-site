@@ -1,0 +1,3 @@
+%td= link_to 'Show', @current_class
+%td= link_to 'Edit', controller: @current_class.class.table_name, action: 'edit', id: @current_class
+%td= link_to 'Destroy', @current_class, method: :delete, data: { confirm: 'Are you sure?' }

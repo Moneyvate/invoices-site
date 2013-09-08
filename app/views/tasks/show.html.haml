@@ -1,29 +1,30 @@
-%p#notice= notice
+- provide :title, @task.name
 
-%p
-  %b User:
-  = @task.user
-%p
-  %b Client:
-  = @task.client
-%p
-  %b Name:
-  = @task.name
-%p
-  %b Description:
-  = @task.description
-%p
-  %b Notes:
-  = @task.notes
-%p
-  %b Priority:
-  = @task.priority
-%p
-  %b Due date:
-  = @task.due_date
-%p
-  %b Rate:
-  = @task.rate
+%table
+  %tr
+    %th User
+    %td= @task.user
+  %tr
+    %th Client
+    %td= @task.client
+  %tr
+    %th Name
+    %td= @task.name
+  %tr
+    %th Description
+    %td= format @task.description
+  %tr
+    %th Notes
+    %td= format @task.notes
+  %tr
+    %th Priority
+    %td= @task.priority
+  %tr
+    %th Due Date
+    %td= task_due @task.due_date
+  %tr
+    %th Rate
+    %td= number_to_currency @task.rate
 
 = link_to 'Edit', edit_task_path(@task)
 \|

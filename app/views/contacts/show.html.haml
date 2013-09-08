@@ -1,11 +1,33 @@
+:css
+  h2 {
+    margin-bottom: 0;
+    border-bottom: 1px solid black;
+  }
+
+  img {
+    height: 100% !important;
+  }
+
 = provide :title, @contact.name
 %h3 #{@contact.title}, #{@contact.client.name}
-%fieldset
-  %legend Contact Information
-  %p Email Address: #{@contact.email}
-  %p Phone: #{@contact.phone}
-  %p Skype: #{@contact.skype}
-  %p IM: #{@contact.im}
+%img.large-2.columns{:src => "http://placehold.it/250&text=Avatar", :alt => "avatar"}/
+.large-3.columns
+  %table
+    %tr
+      %th{colspan: 2} Contact Information
+    %tr
+      %th Email:
+      %td= @contact.email
+    %tr
+      %th Phone:
+      %td= @contact.formatted_phone
+    %tr
+      %th Skype:
+      %td= @contact.skype
+    %tr
+      %th IM:
+      %td= @contact.im
+%hr/
 
 = link_to 'Edit', edit_contact_path(@contact)
 \|

@@ -6,12 +6,28 @@ class Contact < ActiveRecord::Base
   validates :client_id, presence: true
   validates :name, presence: true
 
-  def parse_phone
+  delegate :name, to: :client, prefix: true
+  delegate :name, to: :contact_type, prefix: true
+
+  def to_s
+    name
+  end
+
+  def formatted_phone
+    output = ''
+
     unless phone.nil?
-      format = phone.to_s.split(/^(\d{3})(\d{3})(\d{4})$/)
-      return "(#{format[1]}) #{format[2]}-#{format[3]}"
+      if phone.to_s.length == 10
+        format = phone.to_s.split(/^(\d{3})(\d{3})(\d{4})$/)
+        output = "(#{format[1]}) #{format[2]}-#{format[3]}"
+      elsif phone.to_s.length == 7
+        format = phone.to_s.split(/^(\d{3})(\d{4})$/)
+        output = "#{format[1]}-#{format[2]}"
+      end
     else
-      return "None"
+      output = "None"
     end
+
+    return output
   end
 end
