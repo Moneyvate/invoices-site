@@ -1,6 +1,8 @@
 class Task < ActiveRecord::Base
   belongs_to :user
   belongs_to :client
+  has_many :work_logs
+  accepts_nested_attributes_for :work_logs, allow_destroy: true
 
   def to_s
     name
