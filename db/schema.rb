@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907071816) do
+ActiveRecord::Schema.define(version: 20130910104832) do
 
   create_table "client_types", force: true do |t|
     t.string   "name"
@@ -95,5 +95,18 @@ ActiveRecord::Schema.define(version: 20130907071816) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "work_logs", force: true do |t|
+    t.integer  "task_id"
+    t.date     "start_date"
+    t.time     "start_time"
+    t.date     "end_date"
+    t.time     "end_time"
+    t.decimal  "hours"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "work_logs", ["task_id"], name: "index_work_logs_on_task_id", using: :btree
 
 end
