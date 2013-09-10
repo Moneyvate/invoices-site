@@ -1,31 +1,54 @@
 - provide :title, @task.name
+.row
+  .large-4.columns
+    %table
+      %tr
+        %th User
+        %td= @task.user
+      %tr
+        %th Client
+        %td= @task.client
+      %tr
+        %th Name
+        %td= @task.name
+      %tr
+        %th Description
+        %td= format @task.description
+      %tr
+        %th Notes
+        %td= format @task.notes
+      %tr
+        %th Priority
+        %td= @task.priority
+      %tr
+        %th Due Date
+        %td= task_due @task.due_date
+      %tr
+        %th Rate
+        %td= number_to_currency @task.rate
 
-%table
-  %tr
-    %th User
-    %td= @task.user
-  %tr
-    %th Client
-    %td= @task.client
-  %tr
-    %th Name
-    %td= @task.name
-  %tr
-    %th Description
-    %td= format @task.description
-  %tr
-    %th Notes
-    %td= format @task.notes
-  %tr
-    %th Priority
-    %td= @task.priority
-  %tr
-    %th Due Date
-    %td= task_due @task.due_date
-  %tr
-    %th Rate
-    %td= number_to_currency @task.rate
+    = link_to 'Edit', edit_task_path(@task)
+    \|
+    = link_to 'Back', tasks_path
 
-= link_to 'Edit', edit_task_path(@task)
-\|
-= link_to 'Back', tasks_path
+  .large-7.columns
+    %table
+      %thead
+        %tr
+          %th{colspan: 7} Work Log
+        %tr
+          %th Start Date
+          %th Start Time
+          %th End Date
+          %th End Time
+          %th Hours
+          %th{colspan: 2} Actions
+      - WorkLog.where('task_id = ?', @task.id).each do |log|
+        %tr
+          %td= log.start_date.to_formatted_s(:rfc822)
+          %td= log.start_time.to_formatted_s(:time)
+          %td= log.end_date.to_formatted_s(:rfc822)
+          %td= log.end_time.to_formatted_s(:time)
+          %td= log.hours
+          %td= link_to('Edit', controller: log.class.table_name, action: 'edit', id: log)
+          %td= link_to('Destroy', log, method: :delete, data: { confirm: 'Are you sure?' })
