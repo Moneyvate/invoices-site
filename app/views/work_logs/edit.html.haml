@@ -1,7 +1,5 @@
-%h1 Editing work_log
+= provide :title, 'Edit Work Log'
 
 = render 'form'
 
-= link_to 'Show', @work_log
-\|
-= link_to 'Back', work_logs_path
+= link_to 'Back', task_path(@work_log.task)

@@ -1,5 +1,6 @@
 class WorkLogsController < ApplicationController
   before_action :set_work_log, only: [:show, :edit, :update, :destroy]
+  layout 'devise'
 
   # GET /work_logs
   # GET /work_logs.json
