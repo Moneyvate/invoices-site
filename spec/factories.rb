@@ -29,4 +29,8 @@ FactoryGirl.define do
 		password_confirmation 'password'
 		confirmed_at { Time.now }
 	end
+
+	factory :work_log do
+		task_id FactoryGirl.create(:task).id
+	end
 end

@@ -43,7 +43,7 @@ class WorkLogsController < ApplicationController
   def update
     respond_to do |format|
       if @work_log.update(work_log_params)
-        format.html { redirect_to @work_log, notice: 'Work log was successfully updated.' }
+        format.html { redirect_to task_path(@work_log), notice: 'Work log was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -57,7 +57,7 @@ class WorkLogsController < ApplicationController
   def destroy
     @work_log.destroy
     respond_to do |format|
-      format.html { redirect_to work_logs_url }
+      format.html { redirect_to task_url(@work_log) }
       format.json { head :no_content }
     end
   end
