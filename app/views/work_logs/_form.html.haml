@@ -1,0 +1,12 @@
+= simple_form_for(@work_log) do |f|
+  = f.error_notification
+  %fieldset
+    %legend= content_for?(:title) ? yield(:title) : "Untitled"
+    .form_inputs
+      = f.input :start_date, as: :string, input_html: { type: "date" }
+      = f.input :start_time, as: :string, input_html: { type: "time" }
+      = f.input :end_date, as: :string, input_html: { type: "date" }
+      = f.input :end_time, as: :string, input_html: { type: "time" }
+      = f.input :hours
+    .form-actions
+      = f.button :submit

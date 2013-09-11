@@ -1,0 +1,29 @@
+%h1 Listing work_logs
+
+%table
+  %tr
+    %th Task
+    %th Start date
+    %th Start time
+    %th End date
+    %th End time
+    %th Hours
+    %th
+    %th
+    %th
+
+  - @work_logs.each do |work_log|
+    %tr
+      %td= work_log.task
+      %td= work_log.start_date
+      %td= work_log.start_time
+      %td= work_log.end_date
+      %td= work_log.end_time
+      %td= work_log.hours
+      %td= link_to 'Show', work_log
+      %td= link_to 'Edit', edit_work_log_path(work_log)
+      %td= link_to 'Destroy', work_log, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Work log', new_work_log_path
