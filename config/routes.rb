@@ -19,6 +19,8 @@ InvoicesSite::Application.routes.draw do
     resources :clients
 
     resources :tasks
+
+    resources :work_logs, :except => [:index, :new, :create]
   end
 
   # Example of regular route:

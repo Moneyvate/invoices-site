@@ -1,4 +1,4 @@
-= simple_form_for(@task) do |f|
+= simple_nested_form_for(@task) do |f|
   = f.error_notification
   %fieldset
     %legend= content_for?(:title) ? yield(:title) : "Untitled"
@@ -10,5 +10,17 @@
       = f.input :notes
       = f.input :due_date, as: :string, input_html: { type: 'date' }
       = f.input :rate
+      %fieldset
+        %legend Work Log
+        = f.simple_fields_for :work_logs do |wl_form|
+          %h4 Entry
+          = wl_form.input :_destroy, as: :boolean, label: "Delete this item?" unless wl_form.object.id.nil?
+          = wl_form.input :start_date, as: :string, input_html: { type: "date" }
+          = wl_form.input :start_time, as: :string, input_html: { type: "time" }
+          = wl_form.input :end_date, as: :string, input_html: { type: "date" }
+          = wl_form.input :end_time, as: :string, input_html: { type: "time" }
+          = wl_form.link_to_remove "Remove this Work Log"
+          %hr/
+        = f.link_to_add "Add Work Log", :work_logs
     .form-actions
       = f.button :submit

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Task:
+  = @work_log.task
+%p
+  %b Start date:
+  = @work_log.start_date
+%p
+  %b Start time:
+  = @work_log.start_time
+%p
+  %b End date:
+  = @work_log.end_date
+%p
+  %b End time:
+  = @work_log.end_time
+%p
+  %b Hours:
+  = @work_log.hours
+
+= link_to 'Edit', edit_work_log_path(@work_log)
+\|
+= link_to 'Back', work_logs_path
