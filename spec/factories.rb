@@ -28,6 +28,11 @@ FactoryGirl.define do
 		complexity 1
 	end
 
+	factory :medium, class: Task do
+		name 'Medium Task'
+		complexity 3
+	end
+
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'
