@@ -11,4 +11,8 @@ class Task < ActiveRecord::Base
   def estimated?
     complexity == 0 ? false : true
   end
+
+  def easy?
+    complexity == 1 ? true : false
+  end
 end
