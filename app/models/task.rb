@@ -7,4 +7,8 @@ class Task < ActiveRecord::Base
   def to_s
     name
   end
+
+  def estimated?
+    complexity == 0 ? false : true
+  end
 end

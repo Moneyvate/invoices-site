@@ -20,6 +20,7 @@ FactoryGirl.define do
 
 	factory :task do
 		name 'Example Task'
+		complexity 0
 	end
 
 	factory :user do
