@@ -19,4 +19,8 @@ class Task < ActiveRecord::Base
   def medium?
     complexity == 3 ? true : false
   end
+
+  def hard?
+    complexity == 5 ? true : false
+  end
 end

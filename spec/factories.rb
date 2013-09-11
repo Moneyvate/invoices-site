@@ -33,6 +33,11 @@ FactoryGirl.define do
 		complexity 3
 	end
 
+	factory :hard, class: Task do
+		name 'Hard Task'
+		complexity 5
+	end
+
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'

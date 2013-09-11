@@ -4,6 +4,7 @@ describe "An instance of", Task do
   let(:task) { FactoryGirl.build(:task) }
   let(:easy) { FactoryGirl.build(:easy) }
   let(:medium) { FactoryGirl.build(:medium) }
+  let(:hard) { FactoryGirl.build(:hard) }
     
   it "should have a name" do
     expect(task.to_s).to eq(task.name)
@@ -49,6 +50,28 @@ describe "An instance of", Task do
 
       it "should return 3" do
         expect(medium.complexity).to eq(3)
+      end
+    end
+
+    context "user selects 'Hard'" do
+      it "should be estimated" do
+        expect(hard).to be_estimated
+      end
+
+      it "should not be easy" do
+        expect(hard).not_to be_easy
+      end
+
+      it "should not be medium" do
+        expect(hard).not_to be_medium
+      end
+
+      it "should be hard" do
+        expect(hard).to be_hard
+      end
+
+      it "should return 5" do
+        expect(hard.complexity).to eq(5)
       end
     end
   end
