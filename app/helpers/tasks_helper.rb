@@ -35,6 +35,8 @@ module TasksHelper
     return 'Not Estimated' unless task.estimated?
     if task.easy?
       return 'Easy'
+    elsif task.medium?
+      return 'Medium'
     else
       
     end
