@@ -31,7 +31,12 @@ module TasksHelper
     return output.html_safe
   end
 
-  def human_complexity(complexity)
-    'Not Estimated' unless complexity.estimated?
+  def human_complexity(task)
+    return 'Not Estimated' unless task.estimated?
+    if task.easy?
+      return 'Easy'
+    else
+      
+    end
   end
 end

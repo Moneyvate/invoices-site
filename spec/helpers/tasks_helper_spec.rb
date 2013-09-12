@@ -12,6 +12,7 @@ require 'spec_helper'
 # end
 describe TasksHelper do
   let(:task) { FactoryGirl.build(:task) }
+  let(:easy) { FactoryGirl.build(:easy) }
 
   describe "when displaying a due date to the user" do
     context "and there is no due date selected" do
@@ -63,6 +64,12 @@ describe TasksHelper do
     context "user has selected 'Not Estimated'" do
       it "should display 'Not Estimated'" do
         expect(helper.human_complexity(task)).to eq('Not Estimated')
+      end
+    end
+
+    context "user has selected 'Easy'" do
+      it "should display 'Easy'" do
+        expect(helper.human_complexity(easy)).to eq('Easy')
       end
     end
   end
