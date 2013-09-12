@@ -32,13 +32,14 @@ module TasksHelper
   end
 
   def human_complexity(task)
-    return 'Not Estimated' unless task.estimated?
     if task.easy?
       return 'Easy'
     elsif task.medium?
       return 'Medium'
+    elsif task.hard?
+      return 'Hard'
     else
-      
+      return 'Not Estimated' unless task.estimated?
     end
   end
 end
