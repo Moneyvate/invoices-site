@@ -30,4 +30,8 @@ module TasksHelper
     output = text.gsub(/\r\n/, '<br />')
     return output.html_safe
   end
+
+  def human_complexity(complexity)
+    'Not Estimated' unless complexity.estimated?
+  end
 end
