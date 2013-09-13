@@ -39,6 +39,12 @@ FactoryGirl.define do
 		complexity 5
 	end
 
+	factory :in_progress, class: Task do
+		name 'In Progress Task'
+		complexity 0
+		status 3
+	end
+
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'
