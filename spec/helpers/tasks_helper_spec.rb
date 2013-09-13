@@ -15,6 +15,7 @@ describe TasksHelper do
   let(:easy) { FactoryGirl.build(:easy) }
   let(:medium) { FactoryGirl.build(:medium) }
   let(:hard) { FactoryGirl.build(:hard) }
+  let(:in_progress) { FactoryGirl.build(:in_progress) }
 
   describe "when displaying a due date to the user" do
     context "and there is no due date selected" do
@@ -92,6 +93,12 @@ describe TasksHelper do
     context "user has selected 'Not Started'" do
       it "should display 'Not Started'" do
         expect(helper.human_status(task)).to eq('Not Started')
+      end
+    end
+
+    context "user has selected 'In Progress'" do
+      it "should display 'In Progress'" do
+        expect(helper.human_status(in_progress)).to eq('In Progress')
       end
     end
   end
