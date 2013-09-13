@@ -20,6 +20,22 @@ FactoryGirl.define do
 
 	factory :task do
 		name 'Example Task'
+		complexity 0
+	end
+
+	factory :easy, class: Task do
+		name 'Easy Task'
+		complexity 1
+	end
+
+	factory :medium, class: Task do
+		name 'Medium Task'
+		complexity 3
+	end
+
+	factory :hard, class: Task do
+		name 'Hard Task'
+		complexity 5
 	end
 
 	factory :user do

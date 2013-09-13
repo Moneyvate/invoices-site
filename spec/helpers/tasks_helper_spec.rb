@@ -11,6 +11,11 @@ require 'spec_helper'
 #   end
 # end
 describe TasksHelper do
+  let(:task) { FactoryGirl.build(:task) }
+  let(:easy) { FactoryGirl.build(:easy) }
+  let(:medium) { FactoryGirl.build(:medium) }
+  let(:hard) { FactoryGirl.build(:hard) }
+
   describe "when displaying a due date to the user" do
     context "and there is no due date selected" do
       it "should display 'None'" do
@@ -54,6 +59,32 @@ describe TasksHelper do
       unformatted_string = "One line.\r\nNext line."
       formatted_string = "One line.<br />Next line."
       expect(helper.format(unformatted_string)).to eq(formatted_string)
+    end
+  end
+
+  describe ".human_complexity" do
+    context "user has selected 'Not Estimated'" do
+      it "should display 'Not Estimated'" do
+        expect(helper.human_complexity(task)).to eq('Not Estimated')
+      end
+    end
+
+    context "user has selected 'Easy'" do
+      it "should display 'Easy'" do
+        expect(helper.human_complexity(easy)).to eq('Easy')
+      end
+    end
+
+    context "user has selected 'Medium'" do
+      it "should display 'Medium'" do
+        expect(helper.human_complexity(medium)).to eq('Medium')
+      end
+    end
+
+    context "user has selected 'Hard'" do
+      it "should display 'Hard'" do
+        expect(helper.human_complexity(hard)).to eq('Hard')
+      end
     end
   end
 end
