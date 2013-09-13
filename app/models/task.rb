@@ -24,4 +24,8 @@ class Task < ActiveRecord::Base
   def hard?
     complexity == 5 ? true : false
   end
+
+  def started?
+    status == 5 ? false : true
+  end
 end

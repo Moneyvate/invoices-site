@@ -75,4 +75,16 @@ describe "An instance of", Task do
       end
     end
   end
+
+  describe ".status" do
+    context "user selects 'Not Started'" do
+      it "should not be started" do
+        expect(task).not_to be_started
+      end
+
+      it "should return 5" do
+        expect(task.status).to eq(5)
+      end
+    end
+  end
 end

@@ -21,6 +21,7 @@ FactoryGirl.define do
 	factory :task do
 		name 'Example Task'
 		complexity 0
+		status 5
 	end
 
 	factory :easy, class: Task do
