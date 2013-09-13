@@ -28,4 +28,8 @@ class Task < ActiveRecord::Base
   def started?
     status == 5 ? false : true
   end
+
+  def finished?
+    status == 0 ? true : false
+  end
 end

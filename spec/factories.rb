@@ -45,6 +45,12 @@ FactoryGirl.define do
 		status 3
 	end
 
+	factory :finished, class: Task do
+		name 'Finished Task'
+		complexity 0
+		status 0
+	end
+
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'
