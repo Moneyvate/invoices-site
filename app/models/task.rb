@@ -3,6 +3,7 @@ class Task < ActiveRecord::Base
   belongs_to :client
   has_many :work_logs
   accepts_nested_attributes_for :work_logs, allow_destroy: true
+  validates :complexity, presence: true
 
   def to_s
     name
