@@ -42,4 +42,8 @@ module TasksHelper
       return 'Not Estimated' unless task.estimated?
     end
   end
+
+  def human_status(task)
+    return 'Not Started' unless task.started?
+  end
 end

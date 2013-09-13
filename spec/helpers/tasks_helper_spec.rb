@@ -87,4 +87,12 @@ describe TasksHelper do
       end
     end
   end
+
+  describe ".human_status" do
+    context "user has selected 'Not Started'" do
+      it "should display 'Not Started'" do
+        expect(helper.human_status(task)).to eq('Not Started')
+      end
+    end
+  end
 end
