@@ -55,9 +55,10 @@ class WorkLogsController < ApplicationController
   # DELETE /work_logs/1
   # DELETE /work_logs/1.json
   def destroy
+    @task = @work_log.task
     @work_log.destroy
     respond_to do |format|
-      format.html { redirect_to task_url(@work_log) }
+      format.html { redirect_to task_url(@task) }
       format.json { head :no_content }
     end
   end
