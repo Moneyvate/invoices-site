@@ -46,6 +46,8 @@ module TasksHelper
   def human_status(task)
     if task.started? && !task.finished?
       return 'In Progress'
+    elsif task.finished?
+      return 'Finished'
     else
       return 'Not Started' unless task.started?
     end
