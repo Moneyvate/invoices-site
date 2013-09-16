@@ -4,6 +4,7 @@ class Task < ActiveRecord::Base
   has_many :work_logs
   accepts_nested_attributes_for :work_logs, allow_destroy: true
   validates :complexity, presence: true
+  validates :status, presence: true
 
   def to_s
     name
@@ -23,5 +24,13 @@ class Task < ActiveRecord::Base
 
   def hard?
     complexity == 5 ? true : false
+  end
+
+  def started?
+    status == 5 ? false : true
+  end
+
+  def finished?
+    status == 0 ? true : false
   end
 end

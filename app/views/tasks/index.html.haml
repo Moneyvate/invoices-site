@@ -7,6 +7,7 @@
     %th Name
     %th Description
     %th Notes
+    %th Status
     %th Complexity
     %th Priority
     %th Due date
@@ -21,6 +22,7 @@
       %td= task.name
       %td= task.description
       %td= task.notes
+      %td= human_status task
       %td= human_complexity task
       %td= task.priority
       %td= task.due_date

@@ -5,6 +5,8 @@ describe "An instance of", Task do
   let(:easy) { FactoryGirl.build(:easy) }
   let(:medium) { FactoryGirl.build(:medium) }
   let(:hard) { FactoryGirl.build(:hard) }
+  let(:in_progress) { FactoryGirl.build(:in_progress) }
+  let(:finished) { FactoryGirl.build(:finished) }
     
   it "should have a name" do
     expect(task.to_s).to eq(task.name)
@@ -72,6 +74,46 @@ describe "An instance of", Task do
 
       it "should return 5" do
         expect(hard.complexity).to eq(5)
+      end
+    end
+  end
+
+  describe ".status" do
+    context "user selects 'Not Started'" do
+      it "should not be started" do
+        expect(task).not_to be_started
+      end
+
+      it "should not be finished" do
+        expect(task).not_to be_finished
+      end
+
+      it "should return 5" do
+        expect(task.status).to eq(5)
+      end
+    end
+
+    context "user selects 'In Progress'" do
+      it "should be started" do
+        expect(in_progress).to be_started
+      end
+
+      it "should not be finished" do
+        expect(in_progress).not_to be_finished
+      end
+
+      it "should return 3" do
+        expect(in_progress.status).to eq(3)
+      end
+    end
+
+    context "user selects 'Finished'" do
+      it "should be finished" do
+        expect(finished).to be_finished
+      end
+
+      it "should return 0" do
+        expect(finished.status).to eq(0)
       end
     end
   end
