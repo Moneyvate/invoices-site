@@ -6,6 +6,8 @@
       = f.association :user
       = f.association :client
       = f.input :name
+      = f.input :status, collection: Hash["Not Started" => 5, "In Progress" => 3, Finished: 0]
+      = f.input :complexity, collection: Hash["Not Estimated" => 0, Easy: 1, Medium: 3, Hard: 5]
       = f.input :description
       = f.input :notes
       = f.input :due_date, as: :string, input_html: { type: 'date' }

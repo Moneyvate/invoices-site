@@ -1,7 +1,7 @@
 module InvoicesConfig
   
   module AppDetails
-    VERSION = '0.6'
+    VERSION = '0.7'
     NAME = 'Moneyvate Invoices'
   end
   

@@ -30,4 +30,26 @@ module TasksHelper
     output = text.gsub(/\r\n/, '<br />')
     return output.html_safe
   end
+
+  def human_complexity(task)
+    if task.easy?
+      return 'Easy'
+    elsif task.medium?
+      return 'Medium'
+    elsif task.hard?
+      return 'Hard'
+    else
+      return 'Not Estimated' unless task.estimated?
+    end
+  end
+
+  def human_status(task)
+    if task.started? && !task.finished?
+      return 'In Progress'
+    elsif task.finished?
+      return 'Finished'
+    else
+      return 'Not Started' unless task.started?
+    end
+  end
 end

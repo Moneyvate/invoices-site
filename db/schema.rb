@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130910104832) do
+ActiveRecord::Schema.define(version: 20130911164634) do
 
   create_table "client_types", force: true do |t|
     t.string   "name"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 20130910104832) do
     t.decimal  "rate"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status"
+    t.integer  "complexity"
   end
 
   add_index "tasks", ["client_id"], name: "index_tasks_on_client_id", using: :btree

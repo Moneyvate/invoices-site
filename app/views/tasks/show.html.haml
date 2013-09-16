@@ -18,6 +18,12 @@
         %th Notes
         %td= format @task.notes
       %tr
+        %th Status
+        %td= human_status @task
+      %tr
+        %th Complexity
+        %td= human_complexity @task
+      %tr
         %th Priority
         %td= @task.priority
       %tr
