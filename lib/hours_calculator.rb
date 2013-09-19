@@ -18,6 +18,16 @@ class HoursCalculator
     hours = Time.diff(dt_start, dt_end, '%h')
     mins = Time.diff(dt_start, dt_end, '%m')
 
-    return hours[:diff].to_i
+    quarter = mins[:diff].to_i % 60
+
+    if quarter >= 1 && quarter < 30
+      quarter = 0.25
+    elsif quarter >= 30 && quarter < 45
+      quarter = 0.50
+    elsif quarter >= 45 && quarter < 59
+      quarter = 0.75
+    end
+
+    return hours[:diff].to_i + quarter
   end
 end
