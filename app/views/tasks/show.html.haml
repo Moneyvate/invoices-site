@@ -58,3 +58,8 @@
           %td= log.hours
           %td= link_to('Edit', controller: log.class.table_name, action: 'edit', id: log)
           %td= link_to('Destroy', log, method: :delete, data: { confirm: 'Are you sure?' })
+      %tfoot
+        %tr
+          %th{colspan: 4} Total Time Worked:
+          %td= @task.total_hours
+          %td.filler{colspan: 2}
