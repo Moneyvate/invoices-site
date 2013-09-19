@@ -33,4 +33,8 @@ class Task < ActiveRecord::Base
   def finished?
     status == 0 ? true : false
   end
+
+  def total_hours
+    total = 0
+  end
 end

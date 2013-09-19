@@ -117,4 +117,12 @@ describe "An instance of", Task do
       end
     end
   end
+
+  describe ".total_hours" do
+    context "task has no work logs" do
+      it "should output 0" do
+        expect(task.total_hours).to eq(0)
+      end
+    end
+  end
 end
