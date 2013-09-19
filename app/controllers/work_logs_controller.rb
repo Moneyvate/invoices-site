@@ -1,5 +1,8 @@
+require 'hours_calculator'
+
 class WorkLogsController < ApplicationController
   before_action :set_work_log, only: [:show, :edit, :update, :destroy]
+  after_action :set_hours, only: [:new, :create, :edit, :update]
   layout 'devise'
 
   # GET /work_logs
@@ -72,5 +75,12 @@ class WorkLogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_log_params
       params.require(:work_log).permit(:task_id, :start_date, :start_time, :end_date, :end_time, :hours)
+    end
+
+    # Sum up the hours entered for the current work log.
+    def set_hours
+      hc = HoursCalculator.new(@work_log)
+      @work_log.hours = hc.calculate
+      @work_log.save
     end
 end

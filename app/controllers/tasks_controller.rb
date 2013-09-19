@@ -1,5 +1,8 @@
+require 'hours_calculator'
+
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  after_action :set_hours, only: [:new, :create, :edit, :update]
   layout 'devise'
 
   # GET /tasks
@@ -71,5 +74,14 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:user_id, :client_id, :name, :description, :notes, :priority, :due_date, :rate, :status, :complexity, work_logs_attributes: [:id, :start_date, :start_time, :end_date, :end_time, :_destroy])
+    end
+
+    # Sum Up Hours for All Associated Work Logs
+    def set_hours
+      @task.work_logs.includes(:task).each do |wl|
+        hc = HoursCalculator.new(wl)
+        wl.hours = hc.calculate
+        wl.save
+      end
     end
 end
