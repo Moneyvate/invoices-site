@@ -51,6 +51,13 @@ FactoryGirl.define do
 		status 0
 	end
 
+	factory :one_hour, class: WorkLog do
+		start_date Date.today
+		start_time Time.now
+		end_date Date.today
+		end_time 1.hour.from_now
+	end
+
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'
