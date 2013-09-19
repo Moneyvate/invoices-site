@@ -36,5 +36,15 @@ class Task < ActiveRecord::Base
 
   def total_hours
     total = 0
+
+    if work_logs.empty?
+      return total
+    else
+      work_logs.each do |log|
+        total += log.hours
+      end
+
+      return total
+    end
   end
 end

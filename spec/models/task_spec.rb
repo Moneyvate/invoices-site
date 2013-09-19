@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'hours_calculator'
 
 describe "An instance of", Task do
   let(:task) { FactoryGirl.build(:task) }
@@ -7,6 +8,7 @@ describe "An instance of", Task do
   let(:hard) { FactoryGirl.build(:hard) }
   let(:in_progress) { FactoryGirl.build(:in_progress) }
   let(:finished) { FactoryGirl.build(:finished) }
+  let(:six_hours) { FactoryGirl.build(:one_hour, end_time: 6.hours.from_now)}
     
   it "should have a name" do
     expect(task.to_s).to eq(task.name)
@@ -124,5 +126,26 @@ describe "An instance of", Task do
         expect(task.total_hours).to eq(0)
       end
     end
+
+    context "task work logs add up to 12 and a half hours" do
+      it "should output 12.5" do
+        current_task = Task.new
+
+        current_task.work_logs << six_hours
+        current_task.work_logs << six_hours
+        current_task.work_logs << FactoryGirl.build(:one_hour, end_time: 30.minutes.from_now)
+
+        current_task.save
+
+        current_task.work_logs.each do |wl|
+          hc = HoursCalculator.new(wl)
+          wl.hours = hc.calculate
+          wl.save
+        end
+
+        expect(current_task.total_hours).to eq(12.5.to_d)
+      end
+    end
+
   end
 end
