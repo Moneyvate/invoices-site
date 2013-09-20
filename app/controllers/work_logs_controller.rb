@@ -81,6 +81,6 @@ class WorkLogsController < ApplicationController
     def set_hours
       hc = HoursCalculator.new(@work_log)
       @work_log.hours = hc.calculate
-      @work_log.save
+      @work_log.save!
     end
 end
