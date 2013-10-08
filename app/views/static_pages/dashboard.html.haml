@@ -37,25 +37,6 @@
             %td= task.client
       %tfoot
 %div.row
-  .large-5.columns
-    %table
-      %thead
-        %tr
-          %th{colspan: 5} Clients
-        %tr
-          %th Name
-          %th Type
-          %th{colspan: 3} Actions
-      - Client.order('name ASC').includes(:client_type).each do |client|
-        - @current_class = client
-        %tr
-          %td= client.name
-          %td= client.client_type
-          = render 'common/index_links'
-      %tfoot
-        %tr
-          %td{colspan: 5}= link_to 'New Client', new_client_path
-%div.row
   .large-12.columns
     %table
       %thead
@@ -78,3 +59,23 @@
       %tfoot
         %tr
           %td{colspan: 7}= link_to 'New Contact', new_contact_path
+%div.row
+  .large-5.columns
+    %table
+      %thead
+        %tr
+          %th{colspan: 5} Clients
+        %tr
+          %th Name
+          %th Type
+          %th{colspan: 3} Actions
+      - Client.order('name ASC').includes(:client_type).each do |client|
+        - @current_class = client
+        %tr
+          %td= client.name
+          %td= client.client_type
+          = render 'common/index_links'
+      %tfoot
+        %tr
+          %td{colspan: 5}= link_to 'New Client', new_client_path
+
