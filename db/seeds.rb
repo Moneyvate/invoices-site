@@ -8,7 +8,7 @@
 
 adminUser = User.new(username: 'admin', email: 'admin@example.com', password: 'moneyvate', password_confirmation: 'moneyvate')
 adminUser.skip_confirmation!
-adminUser.save
+adminUser.save!
 
-client_types = ClientType.create([{name: 'Uncategorized'}, {name: 'Individual'}, {name: 'Company'}])
-contact_types = ContactType.create([{name: 'Uncategorized'}, {name: 'Individual'}, {name: 'Company'}])
+client_types = ClientType.create!([{name: 'Uncategorized'}, {name: 'Individual'}, {name: 'Company'}])
+contact_types = ContactType.create!([{name: 'Uncategorized'}, {name: 'Individual'}, {name: 'Company'}])

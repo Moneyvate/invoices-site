@@ -81,7 +81,7 @@ class TasksController < ApplicationController
       @task.work_logs.includes(:task).each do |wl|
         hc = HoursCalculator.new(wl)
         wl.hours = hc.calculate
-        wl.save
+        wl.save!
       end
     end
 end
