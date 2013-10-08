@@ -1,5 +1,42 @@
 = provide :title, "Hello, #{current_user.username}!"
 %div.row
+  .large-7.columns
+    %table
+      %thead
+        %tr
+          %th{colspan: 6} Tasks
+        %tr
+          %th Name
+          %th Client
+          %th Due Date
+          %th{colspan: 3} Actions
+      - unless Task.all.nil?
+        - Task.incomplete.each do |task|
+          - @current_class = task
+          %tr
+            %td= task.name
+            %td= task.client
+            %td= task_due task.due_date
+            = render 'common/index_links'
+      %tfoot
+        %tr
+          %td{colspan: 6}= link_to 'New Task', new_task_path
+  .large-5.columns
+    %table
+      %thead
+        %tr
+          %th{colspan: 6} Completed Tasks
+        %tr
+          %th Name
+          %th Client
+      - unless Task.all.nil?
+        -# Task.where(status: 0).includes(:client).each do |task|
+        - Task.complete.each do |task|
+          %tr
+            %td= task.name
+            %td= task.client
+      %tfoot
+%div.row
   .large-5.columns
     %table
       %thead
@@ -18,27 +55,6 @@
       %tfoot
         %tr
           %td{colspan: 5}= link_to 'New Client', new_client_path
-  .large-7.columns
-    %table
-      %thead
-        %tr
-          %th{colspan: 6} Tasks
-        %tr
-          %th Name
-          %th Client
-          %th Due Date
-          %th{colspan: 3} Actions
-      - unless Task.all.nil?
-        - Task.order('due_date ASC').includes(:client).each do |task|
-          - @current_class = task
-          %tr
-            %td= task.name
-            %td= task.client
-            %td= task_due task.due_date
-            = render 'common/index_links'
-      %tfoot
-        %tr
-          %td{colspan: 6}= link_to 'New Task', new_task_path
 %div.row
   .large-12.columns
     %table
