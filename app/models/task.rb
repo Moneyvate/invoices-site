@@ -6,6 +6,9 @@ class Task < ActiveRecord::Base
   validates :complexity, presence: true
   validates :status, presence: true
 
+  scope :complete, -> {where(status: 0).limit(10).includes(:client)}
+  scope :incomplete, -> {where.not(status: 0).order(due_date: :asc).limit(10).includes(:client)}
+
   def to_s
     name
   end
