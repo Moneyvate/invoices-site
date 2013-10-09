@@ -46,7 +46,7 @@ class WorkLogsController < ApplicationController
   def update
     respond_to do |format|
       if @work_log.update(work_log_params)
-        format.html { redirect_to task_path(@work_log), notice: 'Work log was successfully updated.' }
+        format.html { redirect_to task_path(@work_log.task_id), notice: 'Work log was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
