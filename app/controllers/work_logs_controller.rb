@@ -35,7 +35,7 @@ class WorkLogsController < ApplicationController
         format.html { redirect_to @work_log, notice: 'Work log was successfully created.' }
         format.json { render action: 'show', status: :created, location: @work_log }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.json { render json: @work_log.errors, status: :unprocessable_entity }
       end
     end
@@ -49,7 +49,7 @@ class WorkLogsController < ApplicationController
         format.html { redirect_to task_path(@work_log.task_id), notice: 'Work log was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @work_log.errors, status: :unprocessable_entity }
       end
     end
