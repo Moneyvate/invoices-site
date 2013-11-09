@@ -32,7 +32,7 @@ class ClientTypesController < ApplicationController
         format.html { redirect_to @client_type, notice: 'Client type was successfully created.' }
         format.json { render action: 'show', status: :created, location: @client_type }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.json { render json: @client_type.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,7 @@ class ClientTypesController < ApplicationController
         format.html { redirect_to @client_type, notice: 'Client type was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @client_type.errors, status: :unprocessable_entity }
       end
     end

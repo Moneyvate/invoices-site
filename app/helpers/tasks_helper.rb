@@ -19,7 +19,7 @@ module TasksHelper
         output = "In #{diff[:day]} days"
       elsif date < Date.yesterday
         output = "#{diff[:day]} days ago"
-      end 
+      end
     end
 
     return output
