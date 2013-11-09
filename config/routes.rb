@@ -6,7 +6,7 @@ InvoicesSite::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
-  
+
   authenticated :user do
     root 'users#show', as: :authenticated_root
 
@@ -57,7 +57,7 @@ InvoicesSite::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
