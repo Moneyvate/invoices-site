@@ -22,7 +22,8 @@ class PriorityCalculator
 
     if (due_date <= 1.week.from_now) && (due_date >= Date.today)
       25
-    else
+    elsif (due_date <= 1.month.from_now) && (due_date > 1.week.from_now)
+      12
     end
   end
 
