@@ -84,6 +84,14 @@ describe PriorityCalculator do
         p = PriorityCalculator.new(future)
         expect(p.calculate).to eq(0)
       end
+
+      context "and the task status is 0" do
+        it "should be 0" do
+          future = FactoryGirl.build(:task, due_date: 2.years.from_now, status: 0)
+          p = PriorityCalculator.new(future)
+          expect(p.calculate).to eq(0)
+        end
+      end
     end
 
   end
