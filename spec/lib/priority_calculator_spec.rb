@@ -38,6 +38,14 @@ describe PriorityCalculator do
       end
     end
 
+    context "and the due date is between 1 month and 3 months from now" do
+      it "should be 9" do
+        future = FactoryGirl.build(:task, due_date: 3.months.from_now)
+        p = PriorityCalculator.new(future)
+        expect(p.calculate).to eq(9)
+      end
+    end
+
   end
 
 end

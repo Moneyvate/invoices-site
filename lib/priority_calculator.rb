@@ -24,6 +24,8 @@ class PriorityCalculator
       25
     elsif (due_date <= 1.month.from_now) && (due_date > 1.week.from_now)
       12
+    elsif (due_date <= 3.months.from_now) && (due_date > 1.month.from_now)
+      9
     end
   end
 
