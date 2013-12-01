@@ -19,6 +19,11 @@ class PriorityCalculator
   def due_date_to_points
     return 0 if due_date.nil?
     return 50 if due_date.past?
+
+    if (due_date <= 1.week.from_now) && (due_date >= Date.today)
+      25
+    else
+    end
   end
 
 end
