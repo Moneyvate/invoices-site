@@ -14,6 +14,14 @@ describe PriorityCalculator do
       end
     end
 
+    context "and the due date is in the past" do
+      it "should be 50" do
+        past = FactoryGirl.build(:task, due_date: 1.day.ago)
+        p = PriorityCalculator.new(past)
+        expect(p.calculate).to eq(50)
+      end
+    end
+
   end
 
 end
