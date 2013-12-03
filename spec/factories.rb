@@ -22,6 +22,34 @@ FactoryGirl.define do
 		name 'Example Task'
 		complexity 0
 		status 5
+
+		trait :easy do
+			complexity 1
+		end
+
+		trait :medium do
+			complexity 3
+		end
+
+		trait :hard do
+			complexity 5
+		end
+
+		trait :not_estimated do
+			complexity 0
+		end
+
+		trait :not_started do
+			status 5
+		end
+
+		trait :in_progress do
+			status 3
+		end
+
+		trait :finished do
+			status 0
+		end
 	end
 
 	factory :easy, class: Task do
