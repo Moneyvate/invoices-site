@@ -1,18 +1,19 @@
 class PriorityCalculator
   attr_accessor :task
-  attr_reader :due_date, :status
+  attr_reader :due_date, :status, :complexity
 
   def initialize(task)
     @task = task
     @due_date = task.due_date
     @status = task.status
+    @complexity = task.complexity
   end
 
   def calculate
     if @task.status == 0
       0
     else
-      @status + due_date_to_points
+      @complexity + @status + due_date_to_points
     end
   end
 
