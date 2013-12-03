@@ -20,8 +20,10 @@ FactoryGirl.define do
 
 	factory :task do
 		name 'Example Task'
-		complexity 0
-		status 5
+
+		trait :not_estimated do
+			complexity 0
+		end
 
 		trait :easy do
 			complexity 1
@@ -33,10 +35,6 @@ FactoryGirl.define do
 
 		trait :hard do
 			complexity 5
-		end
-
-		trait :not_estimated do
-			complexity 0
 		end
 
 		trait :not_started do
@@ -52,40 +50,6 @@ FactoryGirl.define do
 		end
 	end
 
-	factory :easy, class: Task do
-		name 'Easy Task'
-		complexity 1
-	end
-
-	factory :medium, class: Task do
-		name 'Medium Task'
-		complexity 3
-	end
-
-	factory :hard, class: Task do
-		name 'Hard Task'
-		complexity 5
-	end
-
-	factory :in_progress, class: Task do
-		name 'In Progress Task'
-		complexity 0
-		status 3
-	end
-
-	factory :finished, class: Task do
-		name 'Finished Task'
-		complexity 0
-		status 0
-	end
-
-	factory :one_hour, class: WorkLog do
-		start_date Date.today
-		start_time Time.now
-		end_date Date.today
-		end_time 1.hour.from_now
-	end
-
 	factory :user do
 		username 'Example User'
 		email 'user@moneyvate.me'
@@ -95,6 +59,10 @@ FactoryGirl.define do
 	end
 
 	factory :work_log do
-		task_id FactoryGirl.create(:task).id
+		task_id FactoryGirl.create(:task, :not_estimated, :not_started).id
+		start_date Date.today
+		start_time Time.now
+		end_date Date.today
+		end_time 8.hours.from_now
 	end
 end

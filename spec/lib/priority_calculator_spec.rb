@@ -3,13 +3,12 @@ require 'priority_calculator'
 
 describe PriorityCalculator do
 
-  let(:task) { FactoryGirl.create(:task) }
-
   context "when calculating a task's priority" do
     
     context "and the task does not have a due date" do
       it "should be 0" do
-        p = PriorityCalculator.new(task)
+        no_date = FactoryGirl.build(:task, :not_started, :not_estimated, due_date: nil)
+        p = PriorityCalculator.new(no_date)
         expect(p.calculate).to eq(0 + p.status)
       end
     end
