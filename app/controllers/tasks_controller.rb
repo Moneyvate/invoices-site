@@ -1,14 +1,16 @@
 require 'hours_calculator'
+require 'priority_calculator'
 
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   after_action :set_hours, only: [:new, :create, :edit, :update]
+  after_action :set_priority, only: [:edit, :update]
   layout 'devise'
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all.includes(:user, :client)
+    @tasks = Task.all.includes(:user, :client).order(priority: :desc)
   end
 
   # GET /tasks/1
@@ -83,5 +85,11 @@ class TasksController < ApplicationController
         wl.hours = hc.calculate
         wl.save!
       end
+    end
+
+    def set_priority
+      pc = PriorityCalculator.new(@task)
+      @task.priority = pc.calculate
+      @task.save
     end
 end
