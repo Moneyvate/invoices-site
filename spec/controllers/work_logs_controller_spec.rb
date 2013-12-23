@@ -146,7 +146,7 @@ describe WorkLogsController do
     it "redirects to the associated task" do
       work_log = WorkLog.create! valid_attributes
       delete :destroy, {:id => work_log.to_param}, valid_session
-      response.should redirect_to(task_url(work_log))
+      response.should redirect_to(tasks_url + "/")
     end
   end
 
