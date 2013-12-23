@@ -31,7 +31,7 @@ describe ClientTypesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    xit "assigns all client_types as @client_types" do
+    it "assigns all client_types as @client_types" do
       client_type = ClientType.create! valid_attributes
       get :index, {}, valid_session
       assigns(:client_types).should eq([client_type])
