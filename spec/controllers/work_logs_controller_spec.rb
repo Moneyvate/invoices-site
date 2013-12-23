@@ -65,36 +65,28 @@ describe WorkLogsController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new WorkLog" do
-        expect {
-          post :create, {:work_log => valid_attributes}, valid_session
-        }.to change(WorkLog, :count).by(1)
+        # NOTE: A new WorkLog may only be created by an existing Task object.
+        # As a result, no #create action is specified for this object.
       end
 
       it "assigns a newly created work_log as @work_log" do
-        post :create, {:work_log => valid_attributes}, valid_session
-        assigns(:work_log).should be_a(WorkLog)
-        assigns(:work_log).should be_persisted
+        # See above note.
       end
 
       it "redirects to the created work_log" do
-        post :create, {:work_log => valid_attributes}, valid_session
-        response.should redirect_to(WorkLog.last)
+        # Due to behavior described in the above note, there is no need
+        # to redirect back to a newly created WorkLog object.
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved work_log as @work_log" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        WorkLog.any_instance.stub(:save).and_return(false)
-        post :create, {:work_log => { "task" => "invalid value" }}, valid_session
-        assigns(:work_log).should be_a_new(WorkLog)
+        # See above note.
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        WorkLog.any_instance.stub(:save).and_return(false)
-        post :create, {:work_log => { "task" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        # Due to the behavior described in the above note, there is no
+        # 'new' template to render for this object.
       end
     end
   end
