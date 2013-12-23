@@ -47,8 +47,7 @@ describe WorkLogsController do
 
   describe "GET new" do
     it "assigns a new work_log as @work_log" do
-      get :new, {}, valid_session
-      assigns(:work_log).should be_a_new(WorkLog)
+      # New WorkLogs may ONLY be created via the Task object.
     end
   end
 
