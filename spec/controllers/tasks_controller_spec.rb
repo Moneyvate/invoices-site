@@ -106,7 +106,7 @@ describe TasksController do
         # specifies that the Task created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Task.any_instance.should_receive(:update).with({ "user" => "" })
+        Task.any_instance.should_receive(:update).with({})
         put :update, {:id => task.to_param, :task => { "user" => "" }}, valid_session
       end
 
