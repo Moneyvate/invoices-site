@@ -93,7 +93,7 @@ describe WorkLogsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      xit "updates the requested work_log" do
+      it "updates the requested work_log" do
         work_log = WorkLog.create! valid_attributes
         # Assuming there are no other work_logs in the database, this
         # specifies that the WorkLog created on the previous line
@@ -103,7 +103,7 @@ describe WorkLogsController do
         put :update, {:id => work_log.to_param, :work_log => { "task" => "" }}, valid_session
       end
 
-      xit "assigns the requested work_log as @work_log" do
+      it "assigns the requested work_log as @work_log" do
         work_log = WorkLog.create! valid_attributes
         put :update, {:id => work_log.to_param, :work_log => valid_attributes}, valid_session
         assigns(:work_log).should eq(work_log)
