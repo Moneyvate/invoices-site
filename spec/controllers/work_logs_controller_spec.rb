@@ -53,7 +53,10 @@ describe WorkLogsController do
 
   describe "GET edit" do
     it "assigns the requested work_log as @work_log" do
-      work_log = WorkLog.create! valid_attributes
+      # Since a WorkLog must be created via a Task, create a Task
+      task = FactoryGirl.create(:task, :not_estimated, :not_started)
+      # Now create the WorkLog, as it's associated with a task.
+      work_log = FactoryGirl.create(:work_log, task_id: task.id)
       get :edit, {:id => work_log.to_param}, valid_session
       assigns(:work_log).should eq(work_log)
     end
