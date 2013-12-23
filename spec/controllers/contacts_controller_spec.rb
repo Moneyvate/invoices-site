@@ -100,7 +100,7 @@ describe ContactsController do
 
   describe "PUT update" do
     describe "with valid params" do
-      xit "updates the requested contact" do
+      it "updates the requested contact" do
         contact = Contact.create! valid_attributes
         # Assuming there are no other contacts in the database, this
         # specifies that the Contact created on the previous line
@@ -110,13 +110,13 @@ describe ContactsController do
         put :update, {:id => contact.to_param, :contact => { "contact_type" => "" }}, valid_session
       end
 
-      xit "assigns the requested contact as @contact" do
+      it "assigns the requested contact as @contact" do
         contact = Contact.create! valid_attributes
         put :update, {:id => contact.to_param, :contact => valid_attributes}, valid_session
         assigns(:contact).should eq(contact)
       end
 
-      xit "redirects to the contact" do
+      it "redirects to the contact" do
         contact = Contact.create! valid_attributes
         put :update, {:id => contact.to_param, :contact => valid_attributes}, valid_session
         response.should redirect_to(contact)
