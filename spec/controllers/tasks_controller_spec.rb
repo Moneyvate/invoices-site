@@ -100,7 +100,7 @@ describe TasksController do
 
   describe "PUT update" do
     describe "with valid params" do
-      xit "updates the requested task" do
+      it "updates the requested task" do
         task = Task.create! valid_attributes
         # Assuming there are no other tasks in the database, this
         # specifies that the Task created on the previous line
@@ -110,13 +110,13 @@ describe TasksController do
         put :update, {:id => task.to_param, :task => { "user" => "" }}, valid_session
       end
 
-      xit "assigns the requested task as @task" do
+      it "assigns the requested task as @task" do
         task = Task.create! valid_attributes
         put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
         assigns(:task).should eq(task)
       end
 
-      xit "redirects to the task" do
+      it "redirects to the task" do
         task = Task.create! valid_attributes
         put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
         response.should redirect_to(task)
