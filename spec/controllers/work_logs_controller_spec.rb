@@ -99,7 +99,7 @@ describe WorkLogsController do
         # specifies that the WorkLog created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        WorkLog.any_instance.should_receive(:update).with({ "task" => "" })
+        WorkLog.any_instance.should_receive(:update).with({})
         put :update, {:id => work_log.to_param, :work_log => { "task" => "" }}, valid_session
       end
 
