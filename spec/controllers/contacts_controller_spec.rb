@@ -106,7 +106,7 @@ describe ContactsController do
         # specifies that the Contact created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Contact.any_instance.should_receive(:update).with({ "contact_type" => "" })
+        Contact.any_instance.should_receive(:update).with({})
         put :update, {:id => contact.to_param, :contact => { "contact_type" => "" }}, valid_session
       end
 
