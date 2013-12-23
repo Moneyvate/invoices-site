@@ -6,6 +6,10 @@ FactoryGirl.define do
 	factory :client do
 		name 'Example Client'
 		client_type_id FactoryGirl.create(:client_type).id
+
+		trait :business do
+			client_type FactoryGirl.create(:client_type, name: "Business")
+		end
 	end
 
 	factory :contact_type do
