@@ -33,9 +33,7 @@ describe WorkLogsController do
 
   describe "GET index" do
     it "assigns all work_logs as @work_logs" do
-      work_log = WorkLog.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:work_logs).should eq([work_log])
+      # WorkLog does not have an index action
     end
   end
 
@@ -49,14 +47,16 @@ describe WorkLogsController do
 
   describe "GET new" do
     it "assigns a new work_log as @work_log" do
-      get :new, {}, valid_session
-      assigns(:work_log).should be_a_new(WorkLog)
+      # New WorkLogs may ONLY be created via the Task object.
     end
   end
 
   describe "GET edit" do
     it "assigns the requested work_log as @work_log" do
-      work_log = WorkLog.create! valid_attributes
+      # Since a WorkLog must be created via a Task, create a Task
+      task = FactoryGirl.create(:task, :not_estimated, :not_started)
+      # Now create the WorkLog, as it's associated with a task.
+      work_log = FactoryGirl.create(:work_log, task_id: task.id)
       get :edit, {:id => work_log.to_param}, valid_session
       assigns(:work_log).should eq(work_log)
     end
@@ -65,53 +65,45 @@ describe WorkLogsController do
   describe "POST create" do
     describe "with valid params" do
       it "creates a new WorkLog" do
-        expect {
-          post :create, {:work_log => valid_attributes}, valid_session
-        }.to change(WorkLog, :count).by(1)
+        # NOTE: A new WorkLog may only be created by an existing Task object.
+        # As a result, no #create action is specified for this object.
       end
 
       it "assigns a newly created work_log as @work_log" do
-        post :create, {:work_log => valid_attributes}, valid_session
-        assigns(:work_log).should be_a(WorkLog)
-        assigns(:work_log).should be_persisted
+        # See above note.
       end
 
       it "redirects to the created work_log" do
-        post :create, {:work_log => valid_attributes}, valid_session
-        response.should redirect_to(WorkLog.last)
+        # Due to behavior described in the above note, there is no need
+        # to redirect back to a newly created WorkLog object.
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved work_log as @work_log" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        WorkLog.any_instance.stub(:save).and_return(false)
-        post :create, {:work_log => { "task" => "invalid value" }}, valid_session
-        assigns(:work_log).should be_a_new(WorkLog)
+        # See above note.
       end
 
       it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        WorkLog.any_instance.stub(:save).and_return(false)
-        post :create, {:work_log => { "task" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        # Due to the behavior described in the above note, there is no
+        # 'new' template to render for this object.
       end
     end
   end
 
   describe "PUT update" do
     describe "with valid params" do
-      xit "updates the requested work_log" do
+      it "updates the requested work_log" do
         work_log = WorkLog.create! valid_attributes
         # Assuming there are no other work_logs in the database, this
         # specifies that the WorkLog created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        WorkLog.any_instance.should_receive(:update).with({ "task" => "" })
+        WorkLog.any_instance.should_receive(:update).with({})
         put :update, {:id => work_log.to_param, :work_log => { "task" => "" }}, valid_session
       end
 
-      xit "assigns the requested work_log as @work_log" do
+      it "assigns the requested work_log as @work_log" do
         work_log = WorkLog.create! valid_attributes
         put :update, {:id => work_log.to_param, :work_log => valid_attributes}, valid_session
         assigns(:work_log).should eq(work_log)
@@ -120,7 +112,7 @@ describe WorkLogsController do
       it "redirects to the associated task" do
         work_log = WorkLog.create! valid_attributes
         put :update, {:id => work_log.to_param, :work_log => valid_attributes}, valid_session
-        response.should redirect_to(task_path(work_log))
+        response.should redirect_to(task_path(work_log.task_id))
       end
     end
 
@@ -154,7 +146,7 @@ describe WorkLogsController do
     it "redirects to the associated task" do
       work_log = WorkLog.create! valid_attributes
       delete :destroy, {:id => work_log.to_param}, valid_session
-      response.should redirect_to(task_url(work_log))
+      response.should redirect_to(tasks_url + "/")
     end
   end
 
