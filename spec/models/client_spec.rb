@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "An instance of", Client do
-  let(:client) { FactoryGirl.create(:client) }
+  let(:client) { FactoryGirl.create(:client, :business) }
 
   it "should have a name" do
     expect(client.name).not_to be_nil
